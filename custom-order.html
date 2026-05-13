@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Custom Order | Unique Tasty Naturals</title>
+<meta name="description" content="Build a custom order with Unique Tasty Naturals. Mix-and-match across products, event/bulk orders for weddings or offices, subscriptions, and corporate gifting. Every request routes to WhatsApp." />
+<meta name="theme-color" content="#f9a826" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pacifico&family=Poppins:wght@400;500;600;700;800;900&display=swap" />
+
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="index.html" aria-label="Unique Tasty Naturals home">
+      <div>
+        <div class="nav__logo">Unique Tasty</div>
+        <div class="nav__sub">NATURALS</div>
+      </div>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="store.html">Store</a>
+      <a href="custom-order.html">Custom Order</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="index.html#faq">FAQ</a>
+      <a class="nav__cart" href="store.html" data-cart-open>
+        🛒 Cart <span class="nav__cart-count" data-cart-count style="display:none">0</span>
+      </a>
+    </nav>
+    <button class="nav__toggle" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HEADER ============ -->
+<section class="section section--orange" style="padding: 60px 0;">
+  <div class="wrap text-center">
+    <span class="eyebrow" style="color: var(--brown);">Custom Order</span>
+    <h1 style="color: var(--brown);">Build the order <em class="script" style="font-style: normal;">your</em> way.</h1>
+    <p class="lead" style="color: var(--brown); margin: 14px auto 0;">Mix-and-match across products, plan an event, set up weekly delivery, or order branded packs for your team. Every request goes straight to our WhatsApp.</p>
+  </div>
+</section>
+
+<!-- ============ TABS ============ -->
+<section class="section section--paper" data-tabs>
+  <div class="wrap">
+    <div class="tabs">
+      <button class="tab-btn is-active" data-tab="mix">🧩 Mix &amp; Match</button>
+      <button class="tab-btn" data-tab="event">🎉 Event / Bulk</button>
+      <button class="tab-btn" data-tab="sub">📅 Subscription</button>
+      <button class="tab-btn" data-tab="corp">🎁 Corporate Gifting</button>
+    </div>
+
+    <!-- ===== TAB 1: MIX & MATCH ===== -->
+    <div class="tab-panel is-active" data-panel="mix">
+      <div class="reveal" style="max-width: 720px; margin: 0 auto;">
+        <div class="text-center mb-3">
+          <h2>Mix &amp; Match Builder</h2>
+          <p class="lead" style="margin: 12px auto 0;">Pick exact quantities across every variant. Your total updates live. We'll calculate any bulk discount on WhatsApp.</p>
+        </div>
+
+        <div class="mix-builder" style="margin-top: 32px;">
+          <div class="mix-row" data-sku="elixir-250-x1">
+            <div>
+              <div class="mix-row__name">Unique Elixir · 250ml</div>
+              <div class="mix-row__price">₦950 each</div>
+            </div>
+            <div class="mix-row__qty">
+              <button data-mix-dec aria-label="Decrease">−</button>
+              <span data-mix-qty>0</span>
+              <button data-mix-inc aria-label="Increase">+</button>
+            </div>
+            <div class="mix-row__price" data-mix-line>₦0</div>
+          </div>
+
+          <div class="mix-row" data-sku="elixir-500-x1">
+            <div>
+              <div class="mix-row__name">Unique Elixir · 500ml</div>
+              <div class="mix-row__price">₦1,850 each</div>
+            </div>
+            <div class="mix-row__qty">
+              <button data-mix-dec aria-label="Decrease">−</button>
+              <span data-mix-qty>0</span>
+              <button data-mix-inc aria-label="Increase">+</button>
+            </div>
+            <div class="mix-row__price" data-mix-line>₦0</div>
+          </div>
+
+          <div class="mix-row" data-sku="shot-x1">
+            <div>
+              <div class="mix-row__name">Immunity Shot</div>
+              <div class="mix-row__price">₦1,000 each</div>
+            </div>
+            <div class="mix-row__qty">
+              <button data-mix-dec aria-label="Decrease">−</button>
+              <span data-mix-qty>0</span>
+              <button data-mix-inc aria-label="Increase">+</button>
+            </div>
+            <div class="mix-row__price" data-mix-line>₦0</div>
+          </div>
+
+          <div class="mix-total">
+            <span>Estimated Total</span>
+            <span data-mix-total>₦0</span>
+          </div>
+
+          <form id="mix-form" class="mt-3">
+            <div class="form-grid">
+              <div class="field">
+                <label for="mix-name">Your name</label>
+                <input id="mix-name" name="name" type="text" placeholder="e.g. Adaora N." required />
+              </div>
+              <div class="field">
+                <label for="mix-phone">Phone (for delivery)</label>
+                <input id="mix-phone" name="phone" type="tel" placeholder="e.g. 080xxxxxxxx" required />
+              </div>
+              <div class="field field--full">
+                <label for="mix-address">Delivery address</label>
+                <input id="mix-address" name="address" type="text" placeholder="Street, area, city" required />
+              </div>
+              <div class="field field--full">
+                <label for="mix-notes">Anything else? (allergies, gift note, preferred delivery time)</label>
+                <textarea id="mix-notes" name="notes" placeholder="Optional"></textarea>
+              </div>
+            </div>
+            <div class="text-center mt-3">
+              <button type="submit" class="btn btn--wa btn--lg">📲 Send Order on WhatsApp</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB 2: EVENT / BULK ===== -->
+    <div class="tab-panel" data-panel="event">
+      <div class="reveal" style="max-width: 720px; margin: 0 auto;">
+        <div class="text-center mb-3">
+          <h2>Event &amp; Bulk Orders</h2>
+          <p class="lead" style="margin: 12px auto 0;">Weddings, conferences, gyms, parties, churches, office launches. Tell us the shape of the event and we'll put together a custom quote.</p>
+        </div>
+
+        <form id="event-form" class="mix-builder" style="margin-top: 32px;">
+          <div class="form-grid">
+            <div class="field">
+              <label for="ev-name">Your name</label>
+              <input id="ev-name" name="name" type="text" placeholder="Full name" required />
+            </div>
+            <div class="field">
+              <label for="ev-phone">Phone / WhatsApp</label>
+              <input id="ev-phone" name="phone" type="tel" placeholder="080xxxxxxxx" required />
+            </div>
+            <div class="field">
+              <label for="ev-type">Event type</label>
+              <select id="ev-type" name="type" required>
+                <option value="">Choose one…</option>
+                <option>Wedding</option>
+                <option>Corporate / Office event</option>
+                <option>Conference / Workshop</option>
+                <option>Gym / Fitness studio</option>
+                <option>Church / Religious event</option>
+                <option>Birthday / Private party</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="ev-date">Event date</label>
+              <input id="ev-date" name="date" type="date" required />
+            </div>
+            <div class="field">
+              <label for="ev-guests">Estimated guests</label>
+              <input id="ev-guests" name="guests" type="number" min="1" placeholder="e.g. 150" required />
+            </div>
+            <div class="field">
+              <label for="ev-location">Event location</label>
+              <input id="ev-location" name="location" type="text" placeholder="City / venue" required />
+            </div>
+            <div class="field field--full">
+              <label for="ev-products">Which products?</label>
+              <select id="ev-products" name="products" required>
+                <option value="">Choose one…</option>
+                <option>Unique Elixir only</option>
+                <option>Immunity Shots only</option>
+                <option>Both, and I want a split recommendation</option>
+                <option>Both, I'll choose quantities with you</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="ev-notes">Anything else we should know?</label>
+              <textarea id="ev-notes" name="notes" placeholder="Branding requirements, service style, dietary notes…"></textarea>
+            </div>
+          </div>
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn--wa btn--lg">📲 Send Event Brief on WhatsApp</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== TAB 3: SUBSCRIPTION ===== -->
+    <div class="tab-panel" data-panel="sub">
+      <div class="reveal" style="max-width: 720px; margin: 0 auto;">
+        <div class="text-center mb-3">
+          <h2>Weekly &amp; Monthly Subscription</h2>
+          <p class="lead" style="margin: 12px auto 0;">Set a recurring rhythm. We bottle fresh and deliver to you on the same day every week, and you save vs. one-off orders.</p>
+        </div>
+
+        <form id="sub-form" class="mix-builder" style="margin-top: 32px;">
+          <div class="form-grid">
+            <div class="field">
+              <label for="sb-name">Your name</label>
+              <input id="sb-name" name="name" type="text" placeholder="Full name" required />
+            </div>
+            <div class="field">
+              <label for="sb-phone">Phone / WhatsApp</label>
+              <input id="sb-phone" name="phone" type="tel" placeholder="080xxxxxxxx" required />
+            </div>
+            <div class="field">
+              <label for="sb-plan">Subscription plan</label>
+              <select id="sb-plan" name="plan" required>
+                <option value="">Choose one…</option>
+                <option>Daily Immunity Shot, 30 day pack</option>
+                <option>Weekly 1× 500ml Elixir</option>
+                <option>Weekly 1× Elixir + 3× Shots</option>
+                <option>Bi-weekly 5× 500ml Elixir</option>
+                <option>Monthly 10× 500ml Elixir + 10× Shots</option>
+                <option>Build me a custom plan</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="sb-start">Preferred start date</label>
+              <input id="sb-start" name="start" type="date" required />
+            </div>
+            <div class="field field--full">
+              <label for="sb-address">Delivery address</label>
+              <input id="sb-address" name="address" type="text" placeholder="Street, area, city" required />
+            </div>
+            <div class="field field--full">
+              <label for="sb-notes">Preferred delivery day / time</label>
+              <input id="sb-notes" name="notes" type="text" placeholder="e.g. Sunday morning, before 10am" />
+            </div>
+          </div>
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn--wa btn--lg">📲 Start Subscription on WhatsApp</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== TAB 4: CORPORATE GIFTING ===== -->
+    <div class="tab-panel" data-panel="corp">
+      <div class="reveal" style="max-width: 720px; margin: 0 auto;">
+        <div class="text-center mb-3">
+          <h2>Corporate Gifting &amp; Branded Packs</h2>
+          <p class="lead" style="margin: 12px auto 0;">Wellness packs for your team, custom labels for client gifts, hampers for the festive season. Premium presentation, hand-delivered.</p>
+        </div>
+
+        <form id="corp-form" class="mix-builder" style="margin-top: 32px;">
+          <div class="form-grid">
+            <div class="field">
+              <label for="cp-name">Your name</label>
+              <input id="cp-name" name="name" type="text" placeholder="Full name" required />
+            </div>
+            <div class="field">
+              <label for="cp-company">Company / Organisation</label>
+              <input id="cp-company" name="company" type="text" placeholder="Company name" required />
+            </div>
+            <div class="field">
+              <label for="cp-phone">Phone / WhatsApp</label>
+              <input id="cp-phone" name="phone" type="tel" placeholder="080xxxxxxxx" required />
+            </div>
+            <div class="field">
+              <label for="cp-email">Email (optional)</label>
+              <input id="cp-email" name="email" type="email" placeholder="you@company.com" />
+            </div>
+            <div class="field">
+              <label for="cp-qty">How many gift packs?</label>
+              <input id="cp-qty" name="qty" type="number" min="1" placeholder="e.g. 50" required />
+            </div>
+            <div class="field">
+              <label for="cp-purpose">Purpose</label>
+              <select id="cp-purpose" name="purpose" required>
+                <option value="">Choose one…</option>
+                <option>Staff appreciation / wellness pack</option>
+                <option>Client appreciation gift</option>
+                <option>Festive hamper (Christmas / New Year / Sallah)</option>
+                <option>Onboarding / welcome pack</option>
+                <option>Conference / event gift</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="cp-label">Custom labelling or branding?</label>
+              <select id="cp-label" name="label" required>
+                <option value="">Choose one…</option>
+                <option>Standard Unique Tasty labels</option>
+                <option>Co-branded labels with our logo + yours</option>
+                <option>Fully branded gift box</option>
+                <option>Not sure yet, open to suggestions</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label for="cp-deadline">Deadline</label>
+              <input id="cp-deadline" name="deadline" type="date" />
+            </div>
+            <div class="field field--full">
+              <label for="cp-notes">Anything else?</label>
+              <textarea id="cp-notes" name="notes" placeholder="Style, theme, message inside the pack…"></textarea>
+            </div>
+          </div>
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn--wa btn--lg">📲 Send Corporate Brief on WhatsApp</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CUSTOM ============ -->
+<section class="section section--brown">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why People Choose Custom</span>
+      <h2>Built for the way you actually drink.</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit reveal" data-delay="1" style="background: rgba(255,250,242,0.04); border-left-color: var(--yellow); color: var(--cream);">
+        <span class="benefit__icon">🧩</span>
+        <h4 style="color: var(--yellow);">Flexible Quantities</h4>
+        <p style="color: var(--cream-deep);">Don't fit a standard pack? Build your own combo across both products. We package and price to match.</p>
+      </div>
+      <div class="benefit reveal" data-delay="2" style="background: rgba(255,250,242,0.04); border-left-color: var(--yellow); color: var(--cream);">
+        <span class="benefit__icon">🎉</span>
+        <h4 style="color: var(--yellow);">Event-Ready</h4>
+        <p style="color: var(--cream-deep);">From a 50-guest wedding to a 500-person conference, we scale up cleanly, and we handle chilled delivery.</p>
+      </div>
+      <div class="benefit reveal" data-delay="3" style="background: rgba(255,250,242,0.04); border-left-color: var(--yellow); color: var(--cream);">
+        <span class="benefit__icon">📅</span>
+        <h4 style="color: var(--yellow);">Set &amp; Forget</h4>
+        <p style="color: var(--cream-deep);">Subscriptions mean you never run out. We auto-deliver on your chosen day and adjust as your taste evolves.</p>
+      </div>
+      <div class="benefit reveal" data-delay="4" style="background: rgba(255,250,242,0.04); border-left-color: var(--yellow); color: var(--cream);">
+        <span class="benefit__icon">🎁</span>
+        <h4 style="color: var(--yellow);">Brand-Worthy Gifts</h4>
+        <p style="color: var(--cream-deep);">Healthy alternatives to wine hampers and cookie boxes, beautifully packed, optionally co-branded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="nav__logo">Unique Tasty</div>
+        <div class="nav__sub" style="color: var(--cream-deep)">NATURALS</div>
+        <p>Cold-pressed wellness drinks crafted in Ibadan, Nigeria. Sip the goodness of nature.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="store.html">All Products</a></li>
+          <li><a href="store.html#elixir">Unique Elixir</a></li>
+          <li><a href="store.html#shot">Immunity Shot</a></li>
+          <li><a href="custom-order.html">Custom Order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>About</h5>
+        <ul>
+          <li><a href="our-story.html">Our Story</a></li>
+          <li><a href="index.html#products">Our Range</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="custom-order.html">Bulk &amp; Events</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Visit / Contact</h5>
+        <ul>
+          <li>4A Awolowo Avenue,<br>Old Bodija, Ibadan</li>
+          <li>Akobo Ojurin, Ibadan</li>
+          <li><a href="https://wa.me/2347085075597">WhatsApp: 070 8507 5597</a></li>
+          <li><a href="tel:+2348161360529">Call: 081 6136 0529</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bot">
+      <div>© <span id="year"></span> Unique Tasty Naturals · Made with care in Ibadan, Nigeria 🇳🇬</div>
+      <div class="footer__socials">
+        <a href="https://instagram.com/uniquetastynaturals" aria-label="Instagram" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.86s-.01 3.59-.07 4.86c-.05 1.17-.25 1.8-.41 2.22a3.7 3.7 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.86s.01-3.59.07-4.86c.05-1.17.25-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16zm0 5.4a4.44 4.44 0 1 0 0 8.88 4.44 4.44 0 0 0 0-8.88zm0 7.32a2.88 2.88 0 1 1 0-5.76 2.88 2.88 0 0 1 0 5.76zm5.65-7.5a1.04 1.04 0 1 1-2.08 0 1.04 1.04 0 0 1 2.08 0z"/></svg></a>
+        <a href="https://wa.me/2347085075597" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.8-.9-2.1-1-.28-.1-.48-.15-.68.15-.2.3-.78 1-.96 1.2-.18.2-.36.22-.66.07-.3-.15-1.27-.47-2.4-1.48-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.36.45-.54.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.62-.93-2.22-.24-.58-.5-.5-.68-.5-.18 0-.38 0-.58 0-.2 0-.53.08-.8.38-.28.3-1.06 1.03-1.06 2.5 0 1.48 1.08 2.9 1.23 3.1.15.2 2.13 3.27 5.18 4.57.72.3 1.28.5 1.72.65.72.23 1.38.2 1.9.12.58-.08 1.8-.73 2.05-1.45.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35zM12 2C6.48 2 2 6.48 2 12c0 1.78.47 3.46 1.28 4.92L2 22l5.2-1.26A9.96 9.96 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.3-.18-3.06.74.74-2.98-.2-.32A7.97 7.97 0 0 1 4 12c0-4.42 3.58-8 8-8s8 3.58 8 8-3.58 8-8 8z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WA ============ -->
+<a class="wa-float" href="https://wa.me/2347085075597?text=Hello%20UniqueTasty!%20I%27d%20like%20to%20discuss%20a%20custom%20order." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.8-.9-2.1-1-.28-.1-.48-.15-.68.15-.2.3-.78 1-.96 1.2-.18.2-.36.22-.66.07-.3-.15-1.27-.47-2.4-1.48-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.36.45-.54.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.62-.93-2.22-.24-.58-.5-.5-.68-.5h-.58c-.2 0-.53.08-.8.38-.28.3-1.06 1.03-1.06 2.5 0 1.48 1.08 2.9 1.23 3.1.15.2 2.13 3.27 5.18 4.57.72.3 1.28.5 1.72.65.72.23 1.38.2 1.9.12.58-.08 1.8-.73 2.05-1.45.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35zM12 2C6.48 2 2 6.48 2 12c0 1.78.47 3.46 1.28 4.92L2 22l5.2-1.26A9.96 9.96 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+</a>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="js/cart.js"></script>
+<script src="js/motion.js"></script>
+
+<!-- ============ PAGE LOGIC: mix builder + form submitters ============ -->
+<script>
+(function () {
+  const NGN = (n) => "₦" + n.toLocaleString("en-NG");
+  const PRICE = { "elixir-250-x1": 950, "elixir-500-x1": 1850, "shot-x1": 1000 };
+  const NAME  = { "elixir-250-x1": "Unique Elixir 250ml", "elixir-500-x1": "Unique Elixir 500ml", "shot-x1": "Immunity Shot" };
+  const qty = { "elixir-250-x1": 0, "elixir-500-x1": 0, "shot-x1": 0 };
+
+  function recalcMix() {
+    let total = 0;
+    document.querySelectorAll(".mix-row").forEach((row) => {
+      const sku = row.dataset.sku;
+      if (!sku || !(sku in qty)) return;
+      const q = qty[sku];
+      row.querySelector("[data-mix-qty]").textContent = q;
+      const line = q * PRICE[sku];
+      row.querySelector("[data-mix-line]").textContent = NGN(line);
+      total += line;
+    });
+    const t = document.querySelector("[data-mix-total]");
+    if (t) t.textContent = NGN(total);
+  }
+  document.querySelectorAll(".mix-row").forEach((row) => {
+    const sku = row.dataset.sku;
+    if (!sku || !(sku in qty)) return;
+    row.querySelector("[data-mix-inc]").addEventListener("click", () => { qty[sku]++; recalcMix(); });
+    row.querySelector("[data-mix-dec]").addEventListener("click", () => { qty[sku] = Math.max(0, qty[sku] - 1); recalcMix(); });
+  });
+
+  /* Mix & Match submit */
+  document.getElementById("mix-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const items = Object.entries(qty).filter(([, q]) => q > 0);
+    if (items.length === 0) { UT.sendWA("Hello UniqueTasty! I want to build a custom order, could you help me pick quantities?"); return; }
+    const total = items.reduce((a, [sku, q]) => a + q * PRICE[sku], 0);
+    const name    = document.getElementById("mix-name").value.trim();
+    const phone   = document.getElementById("mix-phone").value.trim();
+    const address = document.getElementById("mix-address").value.trim();
+    const notes   = document.getElementById("mix-notes").value.trim();
+    const msg =
+      "Hello UniqueTasty! 👋  I'd like to place a custom mix-and-match order:\n\n" +
+      items.map(([sku, q]) => `• ${q} × ${NAME[sku]}, ${NGN(q * PRICE[sku])}`).join("\n") +
+      `\n\n*Estimated total: ${NGN(total)}*` +
+      `\n\nName: ${name}\nPhone: ${phone}\nDelivery address: ${address}` +
+      (notes ? `\nNotes: ${notes}` : "") +
+      "\n\nPlease confirm availability and share payment details. Thank you!";
+    UT.sendWA(msg);
+  });
+
+  /* Event submit */
+  document.getElementById("event-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = (id) => document.getElementById(id).value.trim();
+    const msg =
+      "Hello UniqueTasty! 🎉  I'd like a quote for an event:\n\n" +
+      `*Event type:* ${v("ev-type")}\n` +
+      `*Date:* ${v("ev-date")}\n` +
+      `*Estimated guests:* ${v("ev-guests")}\n` +
+      `*Location:* ${v("ev-location")}\n` +
+      `*Products needed:* ${v("ev-products")}\n` +
+      `\nContact: ${v("ev-name")} · ${v("ev-phone")}\n` +
+      (v("ev-notes") ? `\nNotes: ${v("ev-notes")}\n` : "") +
+      "\nPlease send a quote and confirm logistics. Thank you!";
+    UT.sendWA(msg);
+  });
+
+  /* Subscription submit */
+  document.getElementById("sub-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = (id) => document.getElementById(id).value.trim();
+    const msg =
+      "Hello UniqueTasty! 📅  I'd like to start a subscription:\n\n" +
+      `*Plan:* ${v("sb-plan")}\n` +
+      `*Preferred start date:* ${v("sb-start")}\n` +
+      `*Delivery address:* ${v("sb-address")}\n` +
+      (v("sb-notes") ? `*Preferred day/time:* ${v("sb-notes")}\n` : "") +
+      `\nContact: ${v("sb-name")} · ${v("sb-phone")}\n\nPlease confirm the cycle and payment setup. Thank you!`;
+    UT.sendWA(msg);
+  });
+
+  /* Corporate submit */
+  document.getElementById("corp-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const v = (id) => document.getElementById(id).value.trim();
+    const msg =
+      "Hello UniqueTasty! 🎁  I'd like a corporate / gifting quote:\n\n" +
+      `*Company:* ${v("cp-company")}\n` +
+      `*Quantity (gift packs):* ${v("cp-qty")}\n` +
+      `*Purpose:* ${v("cp-purpose")}\n` +
+      `*Branding:* ${v("cp-label")}\n` +
+      (v("cp-deadline") ? `*Deadline:* ${v("cp-deadline")}\n` : "") +
+      `\nContact: ${v("cp-name")} · ${v("cp-phone")}` + (v("cp-email") ? ` · ${v("cp-email")}` : "") +
+      (v("cp-notes") ? `\n\nNotes: ${v("cp-notes")}` : "") +
+      "\n\nPlease send a quote and mock-up. Thank you!";
+    UT.sendWA(msg);
+  });
+})();
+</script>
+</body>
+</html>
