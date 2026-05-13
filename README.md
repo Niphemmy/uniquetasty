@@ -1,11 +1,11 @@
-# Unique Tasty Naturals — Static Site
+# Unique Tasty Naturals | Static Site
 
 Ecommerce landing site for **Unique Tasty Naturals** (Ibadan, Nigeria). Two products: Unique Elixir (wellness drink, 250ml + 500ml) and Unique Immunity Shot. Every checkout routes to WhatsApp `+2347085075597` for confirmation and payment.
 
 ## Pages
-- `index.html` — Home (landing + long-form health copy with both product deep-dives)
-- `store.html` — Full product grid, all pack tiers, cart drawer
-- `custom-order.html` — Mix-and-match builder + Event/Bulk, Subscription, Corporate Gifting forms
+- `index.html`, Home (landing + long-form health copy with both product deep-dives)
+- `store.html`, Full product grid, all pack tiers, cart drawer
+- `custom-order.html`, Mix-and-match builder + Event/Bulk, Subscription, Corporate Gifting forms
 
 ## Stack
 Pure static HTML / CSS / JS. No build step. Open `index.html` directly in a browser to develop.
