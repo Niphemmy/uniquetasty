@@ -459,6 +459,16 @@
       `\n\nName: ${name}\nPhone: ${phone}\nDelivery address: ${address}` +
       (notes ? `\nNotes: ${notes}` : "") +
       "\n\nPlease confirm availability and share payment details. Thank you!";
+    UT.logOrder({
+      source: "custom-mix",
+      items_summary: items.map(([sku, q]) => `${q} x ${NAME[sku]}`).join(" | "),
+      item_count: items.reduce((a, [, q]) => a + q, 0),
+      total: total,
+      customer_name: name,
+      customer_phone: phone,
+      customer_address: address,
+      notes: notes
+    });
     UT.sendWA(msg);
   });
 
@@ -476,6 +486,16 @@
       `\nContact: ${v("ev-name")} · ${v("ev-phone")}\n` +
       (v("ev-notes") ? `\nNotes: ${v("ev-notes")}\n` : "") +
       "\nPlease send a quote and confirm logistics. Thank you!";
+    UT.logOrder({
+      source: "event-bulk",
+      items_summary: `Event: ${v("ev-type")} | ${v("ev-products")}`,
+      item_count: Number(v("ev-guests")) || 0,
+      total: 0,
+      customer_name: v("ev-name"),
+      customer_phone: v("ev-phone"),
+      customer_address: v("ev-location"),
+      notes: `Date: ${v("ev-date")}. ${v("ev-notes")}`.trim()
+    });
     UT.sendWA(msg);
   });
 
@@ -490,6 +510,16 @@
       `*Delivery address:* ${v("sb-address")}\n` +
       (v("sb-notes") ? `*Preferred day/time:* ${v("sb-notes")}\n` : "") +
       `\nContact: ${v("sb-name")} · ${v("sb-phone")}\n\nPlease confirm the cycle and payment setup. Thank you!`;
+    UT.logOrder({
+      source: "subscription",
+      items_summary: `Subscription: ${v("sb-plan")}`,
+      item_count: 1,
+      total: 0,
+      customer_name: v("sb-name"),
+      customer_phone: v("sb-phone"),
+      customer_address: v("sb-address"),
+      notes: `Start: ${v("sb-start")}. ${v("sb-notes")}`.trim()
+    });
     UT.sendWA(msg);
   });
 
@@ -507,6 +537,16 @@
       `\nContact: ${v("cp-name")} · ${v("cp-phone")}` + (v("cp-email") ? ` · ${v("cp-email")}` : "") +
       (v("cp-notes") ? `\n\nNotes: ${v("cp-notes")}` : "") +
       "\n\nPlease send a quote and mock-up. Thank you!";
+    UT.logOrder({
+      source: "corporate",
+      items_summary: `Corporate gift: ${v("cp-purpose")} | ${v("cp-label")}`,
+      item_count: Number(v("cp-qty")) || 0,
+      total: 0,
+      customer_name: `${v("cp-name")} (${v("cp-company")})`,
+      customer_phone: v("cp-phone"),
+      customer_address: v("cp-email"),
+      notes: `Deadline: ${v("cp-deadline")}. ${v("cp-notes")}`.trim()
+    });
     UT.sendWA(msg);
   });
 })();

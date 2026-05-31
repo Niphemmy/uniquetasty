@@ -6,6 +6,22 @@ const UT = (() => {
   const WA_NUMBER = "2347085075597";
   const STORAGE_KEY = "ut_cart_v1";
   const NGN = (n) => "₦" + n.toLocaleString("en-NG");
+  // Backend logger (Google Apps Script Web App, writes rows to the Orders Sheet)
+  const ORDER_LOG_URL = "https://script.google.com/macros/s/AKfycbyFn8-oBRR2yFMLp7Ft4rK4GA5TCnL6yI2VsVmsvvT7ukDEOwdDeNT0xhEizhzUui2tgg/exec";
+
+  // Fire-and-forget order logger. Uses text/plain to avoid CORS preflight.
+  // If it fails (offline, blocked), the WhatsApp flow still works.
+  function logOrder(payload) {
+    try {
+      fetch(ORDER_LOG_URL, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        keepalive: true,
+        mode: "no-cors"
+      }).catch(() => {});
+    } catch (_) {}
+  }
 
   /* ---------- Catalog (single source of truth) ---------- */
   /* Pricing logic: bulk packs always save ≥ ₦500 vs buying singles. */
@@ -81,6 +97,18 @@ const UT = (() => {
   function checkout(extras = {}) {
     const msg = buildOrderMessage(extras);
     if (!msg) { toast("Your cart is empty"); return; }
+    // Log to backend Sheet (fire-and-forget)
+    const ls = lines();
+    logOrder({
+      source: "store",
+      items_summary: ls.map((l) => `${l.qty} x ${l.product} ${l.variant}`).join(" | "),
+      item_count: count(),
+      total: total(),
+      customer_name: extras.name || "",
+      customer_phone: extras.phone || "",
+      customer_address: extras.address || "",
+      notes: extras.note || ""
+    });
     window.open(waLink(msg), "_blank", "noopener");
   }
 
@@ -198,5 +226,5 @@ const UT = (() => {
     mountButtons();
   });
 
-  return { CATALOG, add, set, remove, clear, lines, total, count, checkout, sendWA, buildOrderMessage, waLink, NGN, subscribe };
+  return { CATALOG, add, set, remove, clear, lines, total, count, checkout, sendWA, buildOrderMessage, waLink, NGN, subscribe, logOrder };
 })();
