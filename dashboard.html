@@ -236,8 +236,31 @@
 
   function render(data) {
     const s = data.stats || {};
-    $("stat-today").textContent     = s.today_orders ?? 0;
-    $("stat-today-rev").textContent = NGN(s.today_revenue) + " revenue";
+    const recent = data.recent || [];
+
+    // Sheets auto-converts the date string column to a Date type, so the backend's
+    // string-equality "today" check can fail. Recompute today from recent[] using
+    // the parsed dates. Week/month/all totals from the server are correct because
+    // they compare against the timestamp column directly.
+    const todayISO = (() => {
+      const d = new Date();
+      return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+    })();
+    let todayCount = 0, todayRev = 0;
+    recent.forEach((o) => {
+      if (formatDate(o.date) === todayISO) {
+        todayCount++;
+        todayRev += Number(o.total) || 0;
+      }
+    });
+    // Trust the server's count if it's higher (there could be >15 today, above recent cap)
+    if ((s.today_orders ?? 0) > todayCount) {
+      todayCount = s.today_orders;
+      todayRev = s.today_revenue;
+    }
+
+    $("stat-today").textContent     = todayCount;
+    $("stat-today-rev").textContent = NGN(todayRev) + " revenue";
     $("stat-week").textContent      = s.week_orders ?? 0;
     $("stat-week-rev").textContent  = NGN(s.week_revenue) + " revenue";
     $("stat-month").textContent     = s.month_orders ?? 0;
@@ -246,7 +269,6 @@
     $("stat-total-rev").textContent = NGN(s.total_revenue) + " revenue";
     $("stat-pending").textContent   = s.pending ?? 0;
 
-    const recent = data.recent || [];
     $("recent-count").textContent = recent.length ? `${recent.length} most recent` : "";
     const body = $("recent-body");
 
