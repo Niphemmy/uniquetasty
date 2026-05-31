@@ -255,9 +255,11 @@
     } else {
       const rows = recent.map((o) => {
         const statusClass = "status--" + String(o.status || "pending").toLowerCase();
-        const dayShort = String(o.day || "").slice(0, 3);
+        const fmtDate = formatDate(o.date);
+        const fmtDay  = formatDay(o.day, o.date);
+        const fmtTime = formatTime(o.time);
         return `<tr>
-          <td data-label="Date">${escapeHTML(o.date)}<br><small style="color:var(--ink-soft)">${escapeHTML(dayShort)} · ${escapeHTML(o.time)}</small></td>
+          <td data-label="Date">${escapeHTML(fmtDate)}<br><small style="color:var(--ink-soft)">${escapeHTML(fmtDay)} · ${escapeHTML(fmtTime)}</small></td>
           <td data-label="Source"><span class="src-badge">${escapeHTML(o.source || "store")}</span></td>
           <td data-label="Items" class="items">${escapeHTML(o.items || "")}</td>
           <td data-label="Customer">${escapeHTML(o.customer || "")}</td>
@@ -277,6 +279,33 @@
 
   function escapeHTML(s) {
     return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  // Sheets auto-converts the "yyyy-MM-dd", day name, and "HH:mm" strings back to Date types
+  // when read. These helpers normalise whatever shape comes back into clean labels.
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const DAYS   = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const pad2 = (n) => String(n).padStart(2, "0");
+  function tryDate(s) { const d = new Date(s); return isNaN(d) ? null : d; }
+  function formatDate(s) {
+    if (!s) return "";
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s; // already in good shape
+    const d = tryDate(s);
+    if (!d) return String(s);
+    return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+  }
+  function formatDay(dayField, dateField) {
+    if (dayField && DAYS.indexOf(dayField) !== -1) return dayField.slice(0, 3);
+    if (dayField && /^[A-Za-z]+$/.test(dayField) && dayField.length <= 9) return dayField.slice(0, 3);
+    const d = tryDate(dateField);
+    return d ? DAYS[d.getDay()].slice(0, 3) : "";
+  }
+  function formatTime(s) {
+    if (!s) return "";
+    if (/^\d{1,2}:\d{2}(:\d{2})?$/.test(s)) return s.slice(0, 5); // already HH:mm[:ss]
+    const d = tryDate(s);
+    if (!d) return String(s);
+    return `${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
   }
 </script>
 </body>
