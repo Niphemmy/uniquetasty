@@ -1,0 +1,45 @@
+{
+  "name": "uniquetasty",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "pnpm claims-check && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "claims-check": "tsx scripts/claims-check.ts",
+    "preflight": "tsx scripts/preflight.ts",
+    "report": "tsx scripts/report.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.5",
+    "@next/mdx": "^15.0.3",
+    "@types/mdx": "^2.0.13",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.36.0",
+    "gray-matter": "^4.0.3",
+    "next": "15.0.3",
+    "next-mdx-remote": "^5.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
+    "@types/node": "^22.9.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "drizzle-kit": "^0.28.0",
+    "eslint": "^9.14.0",
+    "eslint-config-next": "15.0.3",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

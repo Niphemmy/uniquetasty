@@ -1,0 +1,4 @@
+{
+  "buildCommand": "pnpm claims-check && pnpm preflight && next build",
+  "framework": "nextjs"
+}

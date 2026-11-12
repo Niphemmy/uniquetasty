@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #FBF4E6;
+  --paper: #F6EBD1;
+  --ink: #1F1B16;
+  --ink-soft: #5B4E3F;
+  --red: #B6322B;
+  --brown: #6B3A1D;
+  --yellow: #E8A530;
+  --green: #3D6A2E;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-family: ui-serif, Georgia, serif; letter-spacing: -0.01em; }
+
+.prose { color: var(--ink); }
+.prose a { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
