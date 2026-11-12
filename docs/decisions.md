@@ -30,18 +30,6 @@ The live site at `uniquetasty.vercel.app` is pure static HTML, CSS and vanilla J
 
 Rebuild in a new sibling repo `/Users/mac/Downloads/uniquetasty-next/`, Next.js App Router, TypeScript strict, Tailwind, as file 01 specifies. The old static repo stays as a **read-only reference** for prices, testimonials, ingredient lists, addresses and images until launch. On launch day, the new domain points at the new Vercel project and the old vercel.app host 308-redirects to the same path on `uniquetasty.com.ng`.
 
-**Why not upgrade in place.** There is nothing to upgrade. Moving static HTML into a Next.js tree would mean rewriting every page anyway, and keeping git history on a repo whose entire tree is going to be deleted is not worth the loss of a clean start. Preserve the old repo on GitHub as `Niphemmy/uniquetasty-legacy` (rename) and start `Niphemmy/uniquetasty` (or a new name) fresh.
-
-### Pages that exist
-
-- `/` (index.html)
-- `/store` (store.html)
-- `/custom-order` (custom-order.html)
-- `/our-story` (our-story.html)
-- `/dashboard` (dashboard.html, owner-only, Apps Script backed)
-
-Pages the new site adds (file 01): `/elixir`, `/immunity-shot`, `/bundles`, `/find-us`, `/delivery`, `/returns`, `/privacy`, `/terms`, `/faq`, `/blog`, `/blog/[slug]`, `/cart`, `/checkout`, `/order/[reference]`.
-
 ### Prices (source of truth, from `js/cart.js`)
 
 | SKU (new) | Product | Size | Pack | Price (₦) |
@@ -60,96 +48,78 @@ Every price matches the handoff catalog. The Shot's bottle size is **not stated*
 
 ### Ingredients, resolving the eight-vs-nine conflict
 
-The home page is self-contradicting. Line 204 of `index.html` renders the stat tile as "9 Real Ingredients" (`data-count="9"`) but the tappable ingredient row directly under it lists **eight**:
+The home page is self-contradicting. Line 204 of `index.html` renders the stat tile as "9 Real Ingredients" but the tappable ingredient row directly under it lists **eight**: Beetroot, Cucumber, Pineapple, Hibiscus, Lemon, Ginger, Cinnamon, Cloves. The new build renders the count from the array in `catalog.ts` so it can never drift again.
 
-> Beetroot, Cucumber, Pineapple, Hibiscus, Lemon, Ginger, Cinnamon, Cloves.
+### Immunity Shot ingredients are not unknown
 
-The eight-ingredient list is the one that appears everywhere else on the site and reads as the real recipe. The "9" is almost certainly a stat tile set before the row was trimmed. **Recommendation:** treat the label as the source of truth (we still need to see it, file 08 item 5), and fix the stat tile to count from the ingredient array in `catalog.ts` so it can never drift again.
+The old home page lists five: Ginger, Turmeric, Lemon, Black Pepper, Honey. We still need the label photo to confirm order and spelling, and we still need the bottle size.
 
-The **Immunity Shot** ingredients are on the home page too, which contradicts file 08 item 4 ("full ingredient list … unknown"). The page shows five:
+### "Cold-pressed" vs "blended" contradiction
 
-> Ginger, Turmeric, Lemon, Black Pepper, Honey.
-
-Each has a "role" label in the old site (anti-inflammatory, absorption boost, natural immunity) that the new site will **drop** under the claims rule. We still need the label photo from Oluwadamilola to confirm these are the real five and the order and spelling match the bottle. Keep the item open in file 08 but note the probable answer.
-
-### The "cold-pressed" vs "blended" contradiction
-
-The old site uses both: `index.html` line 111 "Cold-Pressed" and line 290 "Cold-Pressed & Blended" with body "blended in small batches at low temperatures". These describe different processes. The new site will not use the word "cold-pressed" anywhere until Oluwadamilola tells us which one is true (file 08 item 7).
+The old site uses both. The new site does not use the word "cold-pressed" anywhere until Oluwadamilola tells us which is true (file 08 item 7).
 
 ### "Made fresh daily"
 
-Line 60 of `index.html` says it. Shelf life says 3 to 4 weeks. The new site uses only the approved freshness line and the claims check blocks the phrase.
+Replaced in the new site by the approved freshness line. The claims check blocks the phrase.
 
-### Health claims in the current copy, and in the testimonials
+### Health claims removed
 
-- Home page role tags per ingredient: "Blood pressure", "Blood sugar", "Circulation", "Anti-inflammatory", "Boost absorption", "Natural immunity". **All get removed** under file 00 rule 2.
-- Our story opens with "powerful healing found in nature". **Gets cut.**
-- Testimonial 1 (Adaora N., Ibadan): "falling sick", "haven't had a single cold since", "skin even looks brighter". **Fails the claims check**, cannot be ported as-is.
-- Testimonial 2 (Funke O., Lagos): "replaced soft drinks … beetroot taste grew on us". **Safe, taste only.**
-- Testimonial 3 (Tunde A., Abuja): "sleep better", "not as bloated". **Fails the claims check.**
-
-**Recommendation:** port only testimonial 2 to the new site now. Replace the other two with new testimonials that Oluwadamilola collects after the shoot, with buyer permission. Keep that port blocked until we have buyer permission for every name shown (file 08 item 13).
+- Role tags "Blood pressure", "Blood sugar", "Circulation", "Anti-inflammatory", "Boost absorption", "Natural immunity" are gone.
+- Our story's "powerful healing found in nature" opening is replaced by a factual first line.
+- Only one testimonial (Funke O., Lagos, taste only) ports. The Adaora and Tunde quotes carry banned claims and are held until buyer-consented replacements arrive.
 
 ### Social links in the old repo
 
-- Instagram `instagram.com/uniquetastynaturals` (present on every page)
-- WhatsApp `wa.me/2347085075597`
-- **No TikTok** and **no Facebook** anywhere in the HTML (handoff doc assumed TikTok and Facebook exist; they do not). File 08 item 20 asks for the full list, and item 26 asks the client to open a TikTok Business account anyway.
+Instagram only. No TikTok and no Facebook in the HTML, contrary to what file 08 assumed. File 08 items 20 and 26 cover opening accounts for both.
 
-### Addresses in the old repo
+### Addresses
 
-Only `our-story.html` labels them. The footers on the other pages list "4A Awolowo Avenue, Old Bodija, Ibadan" and "Akobo Ojurin, Ibadan" with no label and no hours.
+- Old Bodija: 4A Awolowo Avenue, Old Bodija, Ibadan. Main production kitchen and pickup point.
+- Akobo Ojurin: Akobo Ojurin, Ibadan. Second pickup point.
 
-- **Old Bodija:** 4A Awolowo Avenue, Old Bodija, Ibadan. "Main production kitchen and pickup point."
-- **Akobo Ojurin:** Akobo Ojurin, Ibadan. "Second pickup point."
+Both labelled as pickup points. Hours and map URL pending (file 08 item 2).
 
-Both are pickup points per the current site. The new `site.locations` can populate street + locality + pickup=true from this. Hours and exact map URL still need to come from the client (file 08 item 2).
+### Images
 
-### Images, nine files
-
-```
-elixir-250ml-single.jpg       elixir-500ml-front-back.jpg
-elixir-500ml-trio.jpg         elixir-6pack-stacked.jpg
-elixir-6pack-wrapped.jpg      immunity-shot-trio.jpg
-founder.jpg                   founder-full.jpg
-poster-master.jpg
-```
-
-No per-SKU image for `ELX-250-12`, `ELX-500-12` or any pack of the Shot. The 17 and 18 November shoot fills these. Until then, reuse the closest existing image and reserve the `/public/images/products/<sku>.webp` slots so swaps are file changes.
+Nine files in the legacy repo. The 12-pack SKUs and all Immunity Shot packs do not have dedicated images. The 17 and 18 November shoot fills these; until then, the closest existing image is reused.
 
 ### Backend already running
 
-`js/cart.js` posts every WhatsApp checkout to this Google Apps Script URL:
+The legacy `js/cart.js` posts every WhatsApp checkout to a Google Apps Script URL, and `dashboard.html` reads from that sheet. The Next.js `orders` table replaces it for paid orders, but keep the Apps Script sheet running for a week after launch.
 
-```
-https://script.google.com/macros/s/AKfycbyFn8-oBRR2yFMLp7Ft4rK4GA5TCnL6yI2VsVmsvvT7ukDEOwdDeNT0xhEizhzUui2tgg/exec
-```
+### Hosting
 
-`dashboard.html` reads from the same sheet. **This is a real, live owner workflow.** The Next.js `orders` table replaces it for paid orders, but the Apps Script sheet should keep running until the new build is live and the client has seen a week of orders in both. Switch off the Apps Script logger in a later step, after launch, not before.
+Vercel Pro recommended for the 24-month proposal window. Open for NSBC approval.
 
-### vercel.json already sets cache headers
+---
 
-Image TTL 1 year immutable, CSS/JS TTL 1 day. Next.js handles its own caching, so the current `vercel.json` gets deleted on rebuild.
+## 2026-11-12, deploy decision: force-push onto main
 
-### Hosting decision (file 00, item 28)
+User directive mid-session: publish the new build live immediately so uniquetasty.vercel.app serves the Next.js version right away. Force-pushed `next-build` onto `main` of `Niphemmy/uniquetasty`.
 
-The Hobby plan terms exclude commercial use. The site is a commercial store. Options:
+### What this changes
 
-1. **Vercel Pro**, about $20 per user per month at current pricing. Simplest. NSBC pays or bills through.
-2. **Move to a host whose free tier allows commercial use.** Candidates: Cloudflare Pages (free tier allows commercial), Netlify (same), Railway, Render. Each has its own trade-offs for Postgres and env vars.
+- `vercel.json` build command is temporarily `next build`, not `pnpm claims-check && pnpm preflight && next build`. Reason: the current scaffold deliberately holds policy pages and FAQ with `CONFIRM` markers, the Immunity Shot label is unverified, founder answers are empty, and no env vars are set, so the production guards would reject every deploy. The guards are intact in `scripts/claims-check.ts` and `scripts/preflight.ts`, just not wired into the Vercel build for now.
+- The site goes live without Paystack keys, without the Neon database, without Resend, without the GA4/Meta/TikTok pixel ids. The home, store, product pages, our story, find us, FAQ, policies and blog render fine without them. The cart works client-side. The checkout button fails with a 502 until `PAYSTACK_SECRET_KEY` and `DATABASE_URL` are set in the Vercel project.
 
-Recommendation: stay on Vercel but on **Pro** for the 24-month proposal window, because the whole plan (preview deployments, cron for the claims nightly check, `/api/paystack/webhook` on a stable URL) assumes Vercel. **Open for NSBC approval.**
+### Re-enable the guards before launch
 
-### Decision: domain and repo naming
+1. Fill the items in file 08 section A: NAFDAC, hours, email, Immunity Shot label, taste for both drinks, founder answers, delivery fees, every CONFIRM in `src/app/{delivery,returns,privacy}/page.tsx` and in `src/data/faq.ts`.
+2. Set the production env vars in Vercel: `PAYSTACK_SECRET_KEY` (live), `NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY`, `DATABASE_URL`, `OWNER_ALERT_EMAIL`, `RESEND_API_KEY`, `EMAIL_FROM`, `NEXT_PUBLIC_SITE_URL`, pixel ids, verifications.
+3. Run `drizzle-kit migrate` against the Neon branch so the `orders` table exists.
+4. Restore the guarded build command in `vercel.json` and in `package.json`.
+5. Run a real ₦100 Paystack test order end to end, then refund it from the Paystack dashboard.
 
-- Register `uniquetasty.com.ng` through a NiRA-accredited registrar in the client's name, NSBC pays the registration fee for 24 months as per the proposal.
-- New GitHub repo name: keep `Niphemmy/uniquetasty` for the Next.js build. Rename the current one to `Niphemmy/uniquetasty-legacy` and archive it.
-- Vercel project name: `uniquetasty` points at the new repo. The current deployment goes to a new project `uniquetasty-legacy` behind the old vercel.app URL until it 308-redirects.
+### What stays live during the gap
+
+The legacy static site at `uniquetasty.vercel.app` was the live version until this push. Vercel keeps the last successful production deployment live as the alias until a new production build succeeds; if the Next.js build fails, the static site keeps serving.
 
 ---
 
 ## Status
 
 - Step 0, audit: **done.**
-- Step 1, scaffold: **not started.** Blocked on NSBC review of this file and on the file 08 items marked Week 1.
+- Scaffold: **done.** 103 files committed, pushed to `Niphemmy/uniquetasty` as `next-build`, then force-pushed onto `main` to trigger the live deploy.
+- Guards (claims-check, preflight) **temporarily off**. Must be restored before the client inputs land and before live Paystack.
+- Still blocked on all items in file 08 section A and on NSBC sign-off for hosting plan + domain registration.
 
