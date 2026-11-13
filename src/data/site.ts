@@ -54,6 +54,6 @@ export const site = {
   orderLimits: {
     onlineMaxNaira: 50_000,
   },
-} as const;
+};
 
 export type SiteConfig = typeof site;
