@@ -134,7 +134,7 @@ export default function HomePage() {
             blurb="Beetroot, hibiscus, pineapple, cucumber, lemon, ginger, cinnamon and cloves. Deep red, lightly sweet, finishes clean. Our best seller."
             ingredients={elixir.ingredients}
             priceFrom={formatNaira(elixir.variants[0].priceKobo)}
-            image="/images/products/elixir-250.jpg"
+            image="/images/products/ELX-250-1.jpg"
             imageAlt="A 250ml bottle of Unique Elixir"
             href="/elixir"
             cta="See the Elixir"
@@ -144,7 +144,7 @@ export default function HomePage() {
             blurb="Ginger, turmeric, lemon, black pepper and honey. One small bottle. Sharp on the tongue, warm on the throat."
             ingredients={shot.ingredients}
             priceFrom={formatNaira(shot.variants[0].priceKobo)}
-            image="/images/products/shot.jpg"
+            image="/images/products/SHT-1.jpg"
             imageAlt="A bottle of Immunity Shot"
             href="/immunity-shot"
             cta="See the Shot"
